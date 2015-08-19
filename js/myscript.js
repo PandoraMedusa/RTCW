@@ -1,20 +1,22 @@
 // get the canvas element and its context
-var canvas = document.getElementById('sketch');
-var context = canvas.getContext('2d');
+window.onload = function() {
 
-// the aspect ratio is always based on 1140x400, height is calculated from width:
-canvas.width = $('#sketchContainer').outerWidth();
-canvas.height = (canvas.width/1140)*400;
-$('#sketchContainer').outerHeight(String(canvas.height) + "px", true);
-// scale function needs to know the width/height pre-resizing:
-var oWidth = canvas.width;
-var oHeight = canvas.height;
-var lines = [];
+  var canvas = document.getElementById('sketch');
+  var context = canvas.getContext('2d');
 
-var lastMouse = {
-  x: 0,
-  y: 0
-};
+  // the aspect ratio is always based on 1140x400, height is calculated from width:
+  canvas.width = $('#sketchContainer').outerWidth();
+  canvas.height = (canvas.width/1140)*500;
+  $('#sketchContainer').outerHeight(String(canvas.height) + "px", true);
+  // scale function needs to know the width/height pre-resizing:
+  var oWidth = canvas.width;
+  var oHeight = canvas.height;
+  var lines = [];
+
+  var lastMouse = {
+    x: 0,
+    y: 0
+  };
 
 // brush settings
 context.lineWidth = 2;
@@ -24,6 +26,7 @@ context.strokeStyle = '#000';
 
 // attach the mousedown, mouseout, mousemove, mouseup event listeners.
 canvas.addEventListener('mousedown', function (e) {
+  console.log("here");
   lastMouse = {
     x: e.pageX - this.offsetLeft,
     y: e.pageY - this.offsetTop
@@ -233,4 +236,5 @@ $(document).ready(function () {
     changeMouse();
   });          
 });
+};
 
